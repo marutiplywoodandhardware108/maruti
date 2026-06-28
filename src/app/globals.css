@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
+/*
+  Maruti Plywood & Hardware — theme derived from the brand logo:
+  deep charcoal backdrop, metallic gold, walnut wood, brushed silver.
+*/
+
+@theme {
+  /* Brand palette */
+  --color-charcoal: #14110d;
+  --color-charcoal-800: #1c1813;
+  --color-charcoal-700: #26211a;
+  --color-charcoal-600: #322b22;
+
+  --color-gold: #c9a227;
+  --color-gold-light: #e6c75a;
+  --color-gold-dark: #a6841c;
+
+  --color-wood: #8b5a2b;
+  --color-wood-dark: #5e3a1c;
+  --color-wood-light: #b07c48;
+
+  --color-silver: #c9cdd2;
+  --color-silver-dark: #8a8f96;
+
+  --color-cream: #f5f1e8;
+  --color-cream-muted: #d9d3c4;
+
+  /* Semantic tokens */
+  --color-background: #14110d;
+  --color-foreground: #f5f1e8;
+
+  /* Fonts wired from next/font in layout.tsx */
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-manrope), system-ui, -apple-system, sans-serif;
+
+  /* Easing */
+  --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Elegant headings */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Gold gradient text utility */
+.text-gold-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-gold-light) 0%,
+    var(--color-gold) 45%,
+    var(--color-gold-dark) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Thin decorative divider used beside section titles */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold) 50%,
+    transparent
+  );
+}
+
+/* Subtle grain / vignette helpers */
+.bg-grain {
+  background-image: radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(201, 162, 39, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 100% 110%,
+      rgba(139, 90, 43, 0.14),
+      transparent 60%
+    );
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+/* Custom focus ring for accessibility */
+:where(a, button):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Reveal-on-scroll animation (progressive enhancement) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: reveal-up 0.8s var(--ease-elegant) forwards;
+  }
+  @keyframes reveal-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
