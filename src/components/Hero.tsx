@@ -1,13 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Truck, Star } from "lucide-react";
-
-// Served from ImageKit (optimized) when configured, else the local fallback.
-const endpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT?.replace(
-  /\/+$/,
-  "",
-);
-const heroSrc = endpoint ? `${endpoint}/hero.jpeg` : "/images/hero.jpeg";
 
 export function Hero() {
   return (
@@ -15,21 +7,6 @@ export function Hero() {
       className="relative isolate overflow-hidden bg-charcoal bg-grain"
       aria-labelledby="hero-heading"
     >
-      {/* Background photo + dark overlay for text legibility */}
-      <Image
-        src={heroSrc}
-        alt=""
-        aria-hidden="true"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-10 object-cover"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-charcoal/60 via-charcoal/45 to-charcoal/90"
-      />
-
       {/* decorative roof-line motif from the logo */}
       <svg
         className="pointer-events-none absolute -top-10 left-1/2 hidden h-[420px] w-[820px] -translate-x-1/2 opacity-[0.05] md:block"
