@@ -10,7 +10,7 @@ kits, door knobs, hinges, plywood & laminates).
 - **React 19 + TypeScript**
 - **Tailwind CSS v4** (CSS-first theme in `src/app/globals.css`)
 - **lucide-react** for icons
-- Fonts via `next/font`: **Playfair Display** (elegant serif headings) + **Inter** (body)
+- Fonts via `next/font`: **Playfaivr Display** (elegant serif headings) + **Inter** (body)
 
 ## Theme
 
